@@ -1,0 +1,14 @@
+name: Send Morning Report
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Message to Telegram
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_TO_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_TO_CHAT_ID }}" \
+            -d text=$'☀️ Morning Report ☀️\nยอดขายประจำวันที่ 15 กรกฎาคม 2569\n- อเมริกาโน่เย็น: 3 แก้ว (180 บาท)\n\nรวมยอดขายทั้งหมด: 180 บาท ✅'
